@@ -67,6 +67,7 @@
 
 <h1>FFUN Recon – Page 1</h1>
 
+<!-- VEHICLE INFO -->
 <div class="section">
   <h3>Vehicle Info</h3>
   <div class="grid">
@@ -85,40 +86,64 @@
   </div>
 </div>
 
+<!-- DRIVER’S COMPARTMENT -->
 <div class="section">
   <h3>Driver’s Compartment</h3>
-
   <div class="actions">
     <button class="secondary" onclick="passAll('dc')">Pass All</button>
   </div>
 
-  <div class="item" data-field="dc_wipers">
-    <span>Windshield wipers & washers</span>
-    <label><input type="radio" name="dc_wipers" value="Pass"> Pass</label>
-    <label><input type="radio" name="dc_wipers" value="Note"> Note</label>
-    <label><input type="radio" name="dc_wipers" value="Fail"> Fail</label>
-  </div>
+  <!-- FULL LIST -->
+  <div class="item" data-field="dc_vin"><span>Vehicle identification number</span><label><input type="radio" name="dc_vin" value="Pass"> Pass</label><label><input type="radio" name="dc_vin" value="Note"> Note</label><label><input type="radio" name="dc_vin" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_sun_visors"><span>Sun visors</span><label><input type="radio" name="dc_sun_visors" value="Pass"> Pass</label><label><input type="radio" name="dc_sun_visors" value="Note"> Note</label><label><input type="radio" name="dc_sun_visors" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_horn"><span>Horn operation</span><label><input type="radio" name="dc_horn" value="Pass"> Pass</label><label><input type="radio" name="dc_horn" value="Note"> Note</label><label><input type="radio" name="dc_horn" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_mirrors"><span>Mirrors</span><label><input type="radio" name="dc_mirrors" value="Pass"> Pass</label><label><input type="radio" name="dc_mirrors" value="Note"> Note</label><label><input type="radio" name="dc_mirrors" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_wipers"><span>Windshield wipers & washers</span><label><input type="radio" name="dc_wipers" value="Pass"> Pass</label><label><input type="radio" name="dc_wipers" value="Note"> Note</label><label><input type="radio" name="dc_wipers" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_defrosters"><span>Windshield defrosters & heaters</span><label><input type="radio" name="dc_defrosters" value="Pass"> Pass</label><label><input type="radio" name="dc_defrosters" value="Note"> Note</label><label><input type="radio" name="dc_defrosters" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_glass"><span>Windshield and other glass</span><label><input type="radio" name="dc_glass" value="Pass"> Pass</label><label><input type="radio" name="dc_glass" value="Note"> Note</label><label><input type="radio" name="dc_glass" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_gauges"><span>Instruments / gauges</span><label><input type="radio" name="dc_gauges" value="Pass"> Pass</label><label><input type="radio" name="dc_gauges" value="Note"> Note</label><label><input type="radio" name="dc_gauges" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_lamps"><span>Instrument lamps</span><label><input type="radio" name="dc_lamps" value="Pass"> Pass</label><label><input type="radio" name="dc_lamps" value="Note"> Note</label><label><input type="radio" name="dc_lamps" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_switches"><span>Switches</span><label><input type="radio" name="dc_switches" value="Pass"> Pass</label><label><input type="radio" name="dc_switches" value="Note"> Note</label><label><input type="radio" name="dc_switches" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_pedals"><span>Brakes and clutch pedals</span><label><input type="radio" name="dc_pedals" value="Pass"> Pass</label><label><input type="radio" name="dc_pedals" value="Note"> Note</label><label><input type="radio" name="dc_pedals" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_accelerator"><span>Accelerator pedal</span><label><input type="radio" name="dc_accelerator" value="Pass"> Pass</label><label><input type="radio" name="dc_accelerator" value="Note"> Note</label><label><input type="radio" name="dc_accelerator" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_seats"><span>Seats & seat belts</span><label><input type="radio" name="dc_seats" value="Pass"> Pass</label><label><input type="radio" name="dc_seats" value="Note"> Note</label><label><input type="radio" name="dc_seats" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_steering"><span>Steering column / components</span><label><input type="radio" name="dc_steering" value="Pass"> Pass</label><label><input type="radio" name="dc_steering" value="Note"> Note</label><label><input type="radio" name="dc_steering" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_speedo"><span>Speedometer and odometer</span><label><input type="radio" name="dc_speedo" value="Pass"> Pass</label><label><input type="radio" name="dc_speedo" value="Note"> Note</label><label><input type="radio" name="dc_speedo" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_parking_brake"><span>Parking brake</span><label><input type="radio" name="dc_parking_brake" value="Pass"> Pass</label><label><input type="radio" name="dc_parking_brake" value="Note"> Note</label><label><input type="radio" name="dc_parking_brake" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_airbags"><span>Air bags</span><label><input type="radio" name="dc_airbags" value="Pass"> Pass</label><label><input type="radio" name="dc_airbags" value="Note"> Note</label><label><input type="radio" name="dc_airbags" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_floors"><span>Floors</span><label><input type="radio" name="dc_floors" value="Pass"> Pass</label><label><input type="radio" name="dc_floors" value="Note"> Note</label><label><input type="radio" name="dc_floors" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_doors"><span>Doors</span><label><input type="radio" name="dc_doors" value="Pass"> Pass</label><label><input type="radio" name="dc_doors" value="Note"> Note</label><label><input type="radio" name="dc_doors" value="Fail"> Fail</label></div>
+  <div class="item" data-field="dc_cabin_filter"><span>Cabin air filter</span><label><input type="radio" name="dc_cabin_filter" value="Pass"> Pass</label><label><input type="radio" name="dc_cabin_filter" value="Note"> Note</label><label><input type="radio" name="dc_cabin_filter" value="Fail"> Fail</label></div>
+</div>
 
-  <div class="item" data-field="dc_defrosters">
-    <span>Defrosters & heaters</span>
-    <label><input type="radio" name="dc_defrosters" value="Pass"> Pass</label>
-    <label><input type="radio" name="dc_defrosters" value="Note"> Note</label>
-    <label><input type="radio" name="dc_defrosters" value="Fail"> Fail</label>
-  </div>
+<!-- UNDERCARRIAGE -->
+<div class="section">
+  <h3>Undercarriage</h3>
 
-  <div class="item" data-field="dc_glass">
-    <span>Glass</span>
-    <label><input type="radio" name="dc_glass" value="Pass"> Pass</label>
-    <label><input type="radio" name="dc_glass" value="Note"> Note</label>
-    <label><input type="radio" name="dc_glass" value="Fail"> Fail</label>
-  </div>
+  <div class="item" data-field="uc_wheels"><span>Wheels & tires</span><label><input type="radio" name="uc_wheels" value="Pass"> Pass</label><label><input type="radio" name="uc_wheels" value="Note"> Note</label><label><input type="radio" name="uc_wheels" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_bearings"><span>Wheel bearings</span><label><input type="radio" name="uc_bearings" value="Pass"> Pass</label><label><input type="radio" name="uc_bearings" value="Note"> Note</label><label><input type="radio" name="uc_bearings" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_ball_joints"><span>Ball joints</span><label><input type="radio" name="uc_ball_joints" value="Pass"> Pass</label><label><input type="radio" name="uc_ball_joints" value="Note"> Note</label><label><input type="radio" name="uc_ball_joints" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_rack_pinion"><span>Rack & pinion steering</span><label><input type="radio" name="uc_rack_pinion" value="Pass"> Pass</label><label><input type="radio" name="uc_rack_pinion" value="Note"> Note</label><label><input type="radio" name="uc_rack_pinion" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_mounts"><span>Engine / transmission mounts</span><label><input type="radio" name="uc_mounts" value="Pass"> Pass</label><label><input type="radio" name="uc_mounts" value="Note"> Note</label><label><input type="radio" name="uc_mounts" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_linkage"><span>Steering linkage</span><label><input type="radio" name="uc_linkage" value="Pass"> Pass</label><label><input type="radio" name="uc_linkage" value="Note"> Note</label><label><input type="radio" name="uc_linkage" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_suspension"><span>Computer controlled suspension</span><label><input type="radio" name="uc_suspension" value="Pass"> Pass</label><label><input type="radio" name="uc_suspension" value="Note"> Note</label><label><input type="radio" name="uc_suspension" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_shocks"><span>Shock absorbers & strut assemblies</span><label><input type="radio" name="uc_shocks" value="Pass"> Pass</label><label><input type="radio" name="uc_shocks" value="Note"> Note</label><label><input type="radio" name="uc_shocks" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_fuel_lines"><span>Fuel lines, tanks and straps</span><label><input type="radio" name="uc_fuel_lines" value="Pass"> Pass</label><label><input type="radio" name="uc_fuel_lines" value="Note"> Note</label><label><input type="radio" name="uc_fuel_lines" value="Fail"> Fail</label></div>
+</div>
 
-  <div class="item" data-field="dc_horn">
-    <span>Horn</span>
-    <label><input type="radio" name="dc_horn" value="Pass"> Pass</label>
-    <label><input type="radio" name="dc_horn" value="Note"> Note</label>
-    <label><input type="radio" name="dc_horn" value="Fail"> Fail</label>
-  </div>
+<!-- UNDERCARRIAGE CONTINUED -->
+<div class="section">
+  <h3>Undercarriage (continued)</h3>
+
+  <div class="item" data-field="uc_exhaust"><span>Exhaust system / turbocharger(s)</span><label><input type="radio" name="uc_exhaust" value="Pass"> Pass</label><label><input type="radio" name="uc_exhaust" value="Note"> Note</label><label><input type="radio" name="uc_exhaust" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_drive_shaft"><span>Drive shaft</span><label><input type="radio" name="uc_drive_shaft" value="Pass"> Pass</label><label><input type="radio" name="uc_drive_shaft" value="Note"> Note</label><label><input type="radio" name="uc_drive_shaft" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_axles_alignment"><span>Axles & tracking components / wheel alignment</span><label><input type="radio" name="uc_axles_alignment" value="Pass"> Pass</label><label><input type="radio" name="uc_axles_alignment" value="Note"> Note</label><label><input type="radio" name="uc_axles_alignment" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_cv_joints"><span>Constant velocity joints</span><label><input type="radio" name="uc_cv_joints" value="Pass"> Pass</label><label><input type="radio" name="uc_cv_joints" value="Note"> Note</label><label><input type="radio" name="uc_cv_joints" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_brake_lines"><span>Brake lines and hoses</span><label><input type="radio" name="uc_brake_lines" value="Pass"> Pass</label><label><input type="radio" name="uc_brake_lines" value="Note"> Note</label><label><input type="radio" name="uc_brake_lines" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_wheel_seals"><span>Wheel seal leaks</span><label><input type="radio" name="uc_wheel_seals" value="Pass"> Pass</label><label><input type="radio" name="uc_wheel_seals" value="Note"> Note</label><label><input type="radio" name="uc_wheel_seals" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_disc_brakes"><span>Disc-brake components</span><label><input type="radio" name="uc_disc_brakes" value="Pass"> Pass</label><label><input type="radio" name="uc_disc_brakes" value="Note"> Note</label><label><input type="radio" name="uc_disc_brakes" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_drum_brakes"><span>Drum-brake components</span><label><input type="radio" name="uc_drum_brakes" value="Pass"> Pass</label><label><input type="radio" name="uc_drum_brakes" value="Note"> Note</label><label><input type="radio" name="uc_drum_brakes" value="Fail"> Fail</label></div>
+  <div class="item" data-field="uc_abs"><span>Anti-lock brakes</span><label><input type="radio" name="uc_abs" value="Pass"> Pass</label><label><input type="radio" name="uc_abs" value="Note"> Note</label><label><input type="radio" name="uc_abs" value="Fail"> Fail</label></div>
 </div>
 
 <div class="section">
@@ -129,14 +154,12 @@
 <button onclick="submitForm()">Save & Download PDF</button>
 
 <script>
-/* Auto-fill today’s date */
 document.getElementById("inspection_date").value =
   new Date().toISOString().split("T")[0];
 
-/* Pass All for a section */
 function passAll(prefix) {
   document.querySelectorAll(`input[name^="${prefix}_"][value="Pass"]`)
-    .forEach(radio => radio.checked = true);
+    .forEach(r => r.checked = true);
 }
 
 async function submitForm() {
@@ -150,7 +173,6 @@ async function submitForm() {
     }
 
     const data = {};
-
     document.querySelectorAll("input[type=text], input[type=date], textarea")
       .forEach(el => data[el.id] = el.value.trim());
 
@@ -182,7 +204,6 @@ async function submitForm() {
     a.remove();
     URL.revokeObjectURL(url);
 
-    /* Reset for next car */
     document.querySelectorAll("input, textarea").forEach(el => {
       if (el.type === "radio") el.checked = false;
       else el.value = "";
