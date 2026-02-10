@@ -31,6 +31,7 @@
       width: 100%;
       padding: 8px;
       margin-top: 4px;
+      box-sizing: border-box;
     }
     .item {
       display: grid;
@@ -50,6 +51,7 @@
       color: white;
       border: none;
       border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -60,25 +62,23 @@
 <div class="section">
   <h3>Vehicle Info</h3>
   <div class="grid">
-    <label>VIN <input id="vin"></label>
-    <label>Odometer <input id="odometer"></label>
-    <label>Stock # <input id="stock_number"></label>
-    <label>Year <input id="year"></label>
-    <label>Make <input id="make"></label>
-    <label>Model <input id="model"></label>
-    <label>Colour <input id="colour"></label>
-    <label>Engine Type <input id="engine_type"></label>
-    <label>Transmission <input id="transmission_type"></label>
-    <label>FFUN / Value <input id="inspection_type"></label>
-    <label>Technician <input id="tech_name"></label>
+    <label>VIN <input id="vin" type="text"></label>
+    <label>Odometer <input id="odometer" type="text"></label>
+    <label>Stock # <input id="stock_number" type="text"></label>
+    <label>Year <input id="year" type="text"></label>
+    <label>Make <input id="make" type="text"></label>
+    <label>Model <input id="model" type="text"></label>
+    <label>Colour <input id="colour" type="text"></label>
+    <label>Engine Type <input id="engine_type" type="text"></label>
+    <label>Transmission <input id="transmission_type" type="text"></label>
+    <label>FFUN / Value <input id="inspection_type" type="text"></label>
+    <label>Technician <input id="tech_name" type="text"></label>
   </div>
 </div>
 
 <div class="section">
   <h3>Driver’s Compartment</h3>
 
-  <!-- TEMPLATE ITEM -->
-  <!-- Copy this pattern for all items -->
   <div class="item" data-field="dc_wipers">
     <span>Windshield wipers & washers</span>
     <label><input type="radio" name="dc_wipers" value="pass"> Pass</label>
@@ -117,37 +117,51 @@
 <button onclick="submitForm()">Save & Download PDF</button>
 
 <script>
-  async function submitForm() {
+async function submitForm() {
+  try {
     const data = {};
 
-    // text + textarea
+    // Collect text inputs & textarea
     document.querySelectorAll("input[type=text], textarea").forEach(el => {
-      data[el.id] = el.value;
+      data[el.id] = el.value.trim();
     });
 
-    // pass / note / fail radios
+    // Collect pass/note/fail radio selections
     document.querySelectorAll(".item").forEach(item => {
       const field = item.dataset.field;
       const selected = item.querySelector("input:checked");
       data[field] = selected ? selected.value : "";
     });
 
-    const res = await fetch(
-      "https://recon-form-pdf-backend.onrender.com/generate-pdf",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      }
-    );
+    // Call Flask backend
+    const response = await fetch("https://recon-form-pdf-backend.onrender.com/generate-pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
+    if (!response.ok) {
+      throw new Error("PDF generation failed: " + response.statusText);
+    }
+
+    // Convert response to blob & trigger download
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `FFUN_Recon_${data.vin || "UNKNOWN"}.pdf`;
+
+    const filename = `FFUN_Recon_${data.vin || "UNKNOWN"}_${data.tech_name || "TECH"}.pdf`;
+    a.download = filename;
+
+    document.body.appendChild(a);
     a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error(err);
+    alert("Failed to generate PDF. Make sure the backend is live.");
   }
+}
 </script>
 
 </body>
