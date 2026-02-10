@@ -8,7 +8,7 @@
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
-      padding: 20px;
+      padding: 16px;
     }
     h1 {
       text-align: center;
@@ -19,18 +19,29 @@
       margin-bottom: 16px;
       border-radius: 8px;
     }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
     label {
       display: block;
-      margin: 6px 0;
+      font-size: 14px;
     }
-    input[type="text"] {
+    input[type="text"], textarea {
       width: 100%;
       padding: 8px;
       margin-top: 4px;
     }
+    .checkbox label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+    }
     button {
       width: 100%;
-      padding: 16px;
+      padding: 18px;
       font-size: 18px;
       background: #2563eb;
       color: white;
@@ -41,49 +52,73 @@
 </head>
 <body>
 
-<h1>FFUN Recon Form</h1>
+<h1>FFUN Recon – Page 1</h1>
 
 <div class="section">
-  <label>VIN
-    <input type="text" id="vin">
-  </label>
-  <label>Odometer
-    <input type="text" id="odometer">
-  </label>
-  <label>Technician Name
-    <input type="text" id="tech">
-  </label>
+  <h3>Vehicle Info</h3>
+  <div class="grid">
+    <label>VIN <input id="vin"></label>
+    <label>Odometer <input id="odometer"></label>
+    <label>Stock # <input id="stock_number"></label>
+    <label>Year <input id="year"></label>
+    <label>Make <input id="make"></label>
+    <label>Model <input id="model"></label>
+    <label>Colour <input id="colour"></label>
+    <label>Engine Type <input id="engine_type"></label>
+    <label>Transmission <input id="transmission_type"></label>
+    <label>FFUN / Value <input id="inspection_type"></label>
+    <label>Technician <input id="tech_name"></label>
+  </div>
+</div>
+
+<div class="section checkbox">
+  <h3>Driver’s Compartment</h3>
+  <label><input type="checkbox" id="dc_wipers"> Windshield wipers & washers</label>
+  <label><input type="checkbox" id="dc_defrosters"> Defrosters & heaters</label>
+  <label><input type="checkbox" id="dc_glass"> Glass</label>
+  <label><input type="checkbox" id="dc_gauges"> Instruments / gauges</label>
+  <label><input type="checkbox" id="dc_vin_plate"> VIN plate</label>
+  <label><input type="checkbox" id="dc_sun_visors"> Sun visors</label>
+  <label><input type="checkbox" id="dc_horn"> Horn</label>
+  <label><input type="checkbox" id="dc_mirrors"> Mirrors</label>
+  <label><input type="checkbox" id="dc_lamps"> Instrument lamps</label>
+  <label><input type="checkbox" id="dc_switches"> Switches</label>
+  <label><input type="checkbox" id="dc_brake_clutch"> Brake & clutch pedals</label>
+  <label><input type="checkbox" id="dc_accelerator"> Accelerator</label>
+  <label><input type="checkbox" id="dc_seats_belts"> Seats & seat belts</label>
+  <label><input type="checkbox" id="dc_steering_column"> Steering column</label>
+  <label><input type="checkbox" id="dc_speedometer"> Speedometer / odometer</label>
+  <label><input type="checkbox" id="dc_engine_shutdown"> Engine shutdown controls</label>
+  <label><input type="checkbox" id="dc_neutral_switch"> Neutral switch</label>
+  <label><input type="checkbox" id="dc_parking_brake"> Parking brake</label>
+  <label><input type="checkbox" id="dc_clutch_disengage"> Clutch disengagement</label>
+  <label><input type="checkbox" id="dc_indicator_lamp"> Indicator lamp</label>
+  <label><input type="checkbox" id="dc_airbags"> Air bags</label>
+  <label><input type="checkbox" id="dc_power_booster"> Power booster</label>
+  <label><input type="checkbox" id="dc_brake_reserve"> Brake reserve / leakage</label>
+  <label><input type="checkbox" id="dc_steering_lash"> Steering lash & travel</label>
+  <label><input type="checkbox" id="dc_aux_equipment"> Auxiliary equipment</label>
+  <label><input type="checkbox" id="dc_floors"> Floors</label>
+  <label><input type="checkbox" id="dc_doors"> Doors</label>
+  <label><input type="checkbox" id="dc_cabin_filter"> Cabin air filter</label>
 </div>
 
 <div class="section">
-  <h3>Driver’s Compartment</h3>
-  <label><input type="checkbox" id="wipers"> Windshield wipers</label>
-  <label><input type="checkbox" id="mirrors"> Mirrors</label>
-  <label><input type="checkbox" id="horn"> Horn operation</label>
+  <h3>Future Attention Required</h3>
+  <textarea id="future_attention" rows="6"></textarea>
 </div>
 
 <button onclick="submitForm()">Save & Download PDF</button>
 
 <script>
   async function submitForm() {
-    const vin = document.getElementById("vin").value;
-    const odometer = document.getElementById("odometer").value;
-    const tech = document.getElementById("tech").value;
+    const fields = document.querySelectorAll("input, textarea");
+    const data = {};
+    fields.forEach(f => {
+      data[f.id] = f.type === "checkbox" ? f.checked : f.value;
+    });
 
-    const wipers = document.getElementById("wipers").checked;
-    const mirrors = document.getElementById("mirrors").checked;
-    const horn = document.getElementById("horn").checked;
-
-    const data = {
-      vin,
-      odometer,
-      tech,
-      wipers,
-      mirrors,
-      horn
-    };
-
-    const response = await fetch(
+    const res = await fetch(
       "https://recon-form-pdf-backend.onrender.com/generate-pdf",
       {
         method: "POST",
@@ -92,23 +127,14 @@
       }
     );
 
-    if (!response.ok) {
-      alert("PDF generation failed");
-      return;
-    }
-
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "FFUN_Recon_Completed.pdf";
-    document.body.appendChild(a);
+    a.download = `FFUN_Recon_${data.vin || "UNKNOWN"}.pdf`;
     a.click();
-    a.remove();
   }
 </script>
-
 
 </body>
 </html>
