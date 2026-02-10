@@ -66,13 +66,21 @@
 
 <script>
   async function submitForm() {
+    const vin = document.getElementById("vin").value;
+    const odometer = document.getElementById("odometer").value;
+    const tech = document.getElementById("tech").value;
+
+    const wipers = document.getElementById("wipers").checked;
+    const mirrors = document.getElementById("mirrors").checked;
+    const horn = document.getElementById("horn").checked;
+
     const data = {
-      vin: vin.value,
-      odometer: odometer.value,
-      tech: tech.value,
-      wipers: wipers.checked,
-      mirrors: mirrors.checked,
-      horn: horn.checked
+      vin,
+      odometer,
+      tech,
+      wipers,
+      mirrors,
+      horn
     };
 
     const response = await fetch(
@@ -83,6 +91,11 @@
         body: JSON.stringify(data)
       }
     );
+
+    if (!response.ok) {
+      alert("PDF generation failed");
+      return;
+    }
 
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
@@ -95,6 +108,7 @@
     a.remove();
   }
 </script>
+
 
 </body>
 </html>
